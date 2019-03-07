@@ -1,1 +1,1 @@
-Collection of problems
+Collections of problems.
