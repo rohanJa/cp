@@ -1,0 +1,23 @@
+To create a new branch 
+Click on the task bar above 
+click on "Create New Branch"
+Then provide the as suitable
+---------------------------------!!!!!!!!!!!!!!!!!!!!!!!!-------------------------
+
+
+--------------------------------!!!!!!!!!!!!!!!------------------------
+first click on the "+" plus button in vs code
+the this "..." dotted button 
+select Comitted stagged
+then use "git push origin dbr_rj_csv_field_error" command in the terminal
+
+-------------------------------!!!!!!------------------------------------------------
+
+then go to "Git Lab"
+sign in 
+Click on the "Merge Request"
+then create "New Merge Request"
+select your branch as "Source Branch"
+Select the branch which you want to merge as the "Target Branch"
+the provide the "Assignee"
+  
