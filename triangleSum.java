@@ -5,28 +5,18 @@ import java.io.InputStreamReader;
 
 class triangleSum{
 
-    private static final int _0 = 0;
-
     public static void main(String[] args) throws java.io.IOException {
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        // int length = Integer.parseInt(br.readLine());
-        Scanner sc = new Scanner(System.in);
         
-
+        Scanner sc = new Scanner(System.in);
         int i, j;
         int numberOfTime = sc.nextInt();
 
-        while(numberOfTime>0){
-            System.out.println("numberOfTime "+numberOfTime);
-            
+        while(numberOfTime>0){   
             int length = sc.nextInt();
             int[][] arrayValue = new int[length][length];
             
             for (i = 0; i < length; i++) {
             for (j = 0; j <= i; j++) {
-                // arrayValue[i][j] = Integer.parseInt(br.readLine());
                 arrayValue[i][j] = sc.nextInt();
             }
         }
@@ -40,7 +30,6 @@ class triangleSum{
                     arrayValue[i][j]+=arrayValue[i+1][j];
             }
         }
-        System.out.println("Answer is "+arrayValue[0][0]);
      numberOfTime--;
     }
     }
