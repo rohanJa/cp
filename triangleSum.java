@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 
 
 class triangleSum{
-
     public static void main(String[] args) throws java.io.IOException {
         
         Scanner sc = new Scanner(System.in);
