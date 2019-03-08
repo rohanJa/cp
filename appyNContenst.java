@@ -7,35 +7,36 @@ import java.util.Scanner;
 // s whose codes are divisible by both AA and BB).
 
 class appyNContenst{
+    static int gcd(int a,int b){
+        if(b==0)
+            return a;
+        return gcd(b,a%b);
+    }
+
     public static void main(String []args){
-       
+
+           
        
         Scanner sc = new Scanner(System.in);
         int count,noOfQuestion,i,greaterNumber,number ,number2;
-        System.out.println("Enter nunmber of testcases ");
         int testcases=sc.nextInt();
-        
+        int storeGcd;   
+        int greaterCount,numberCount,number2Count;
         while(testcases>0){
-            System.out.println("enter greaterNumber number 1 and 2 noOfQuestion" );
             greaterNumber = sc.nextInt();
             number = sc.nextInt();
             number2 = sc.nextInt(); 
             noOfQuestion = sc.nextInt();
-            count=0;
-            for(i=0;number*i<=greaterNumber;i++){
-                if((number*i)%number2!=0){
-                    count--;
-                }
-                    count++;
-            }
-
-            for(i=0;number2*i<=greaterNumber;i++){
-                if((number2*i)%number==0){
-                    count--;
-                }
-                count++;                
-            }
-            System.out.println("value of "+noOfQuestion+noOfQuestion+"value of count is "+count);
+            storeGcd = (number2*number)/gcd(number,number2);
+            System.out.println(storeGcd);   
+            greaterCount = 2*(greaterNumber/storeGcd);
+            System.out.println("greaterCount "+greaterCount);
+            numberCount = greaterNumber/number;
+            System.out.println("numberCount "+numberCount);
+            number2Count = greaterNumber/number2;
+            System.out.println("number2Count "+number2Count);
+            count=(numberCount+number2Count)-greaterCount;
+            System.out.println("count "+count);
             if(count>=noOfQuestion)
                 System.out.println("Win");
             else
