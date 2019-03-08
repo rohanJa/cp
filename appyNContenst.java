@@ -7,7 +7,8 @@ import java.util.Scanner;
 // s whose codes are divisible by both AA and BB).
 
 class appyNContenst{
-    static int gcd(int a,int b){
+
+    static long gcd(long a,long b){
         if(b==0)
             return a;
         return gcd(b,a%b);
@@ -15,28 +16,27 @@ class appyNContenst{
 
     public static void main(String []args){
 
-           
-       
         Scanner sc = new Scanner(System.in);
-        int count,noOfQuestion,i,greaterNumber,number ,number2;
+        long count,noOfQuestion,greaterNumber,number ,number2;
         int testcases=sc.nextInt();
-        int storeGcd;   
-        int greaterCount,numberCount,number2Count;
+        long storeGcd,greaterCount,numberCount,number2Count;
+        //long because of the constraint so w euse nextLong() inside of nextInt()
         while(testcases>0){
+
             greaterNumber = sc.nextInt();
-            number = sc.nextInt();
-            number2 = sc.nextInt(); 
-            noOfQuestion = sc.nextInt();
+            number = sc.nextLong();
+            number2 = sc.nextLong(); 
+            noOfQuestion = sc.nextLong();
+            
+            //it will give L.C.M
+            //and multiply by two  as we have two number and it wil occur in both each time  
             storeGcd = (number2*number)/gcd(number,number2);
-            System.out.println(storeGcd);   
+
             greaterCount = 2*(greaterNumber/storeGcd);
-            System.out.println("greaterCount "+greaterCount);
             numberCount = greaterNumber/number;
-            System.out.println("numberCount "+numberCount);
             number2Count = greaterNumber/number2;
-            System.out.println("number2Count "+number2Count);
             count=(numberCount+number2Count)-greaterCount;
-            System.out.println("count "+count);
+            
             if(count>=noOfQuestion)
                 System.out.println("Win");
             else
