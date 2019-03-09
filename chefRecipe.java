@@ -1,9 +1,15 @@
-import java.util.Scanner;
+/* package codechef; // don't place package name! */
 
-class chefRecipe{
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-    public static void main(String []args){
-        
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
         Scanner sc =new Scanner(System.in);
         int testcase = sc.nextInt();
         while(testcase>0){
@@ -15,28 +21,40 @@ class chefRecipe{
         }
 
         int small = arrayElement[0];
-
-        for(int i=1;i<arraySize;i++){
-            if (small == 1)
-                break;
-            else if(small>arrayElement[i])    
-                small = arrayElement[i];
-        }
-        int  flag=0;
         if (small == 1 ){
             for(int i=0;i<arraySize;i++){
                 System.out.print(arrayElement[i]+" ");
             }
         }
-        else{
-            for(int i=0;i<arraySize;i++){
-                if (arrayElement[i]%small != 0)
-                   flag=1;
+        else if(small!=1){
+            for(int i=1;i<arraySize;i++){
+                if (small == 1)
+                    break;
+                else if(small>arrayElement[i])    
+                    small = arrayElement[i];
             }
+        
+            int flag=1;
+            while(small>1&&flag==1){
+
+                for(int i=0;i<arraySize;i++){
+                    if (arrayElement[i]%small != 0){
+                        small--;
+                       flag=1;
+                        break;
+                    }
+                    else{
+                        flag=0;
+                    }
+                }
+
+            }
+            
+            System.out.println("small is "+small+" flag is "+flag);
             if(flag == 1){
                 for(int i=0;i<arraySize;i++){
                     System.out.print(arrayElement[i]+" ");
-                }
+                 }
             }
             else{
                 for(int i=0;i<arraySize;i++){
@@ -46,6 +64,6 @@ class chefRecipe{
         }
         System.out.println();
         testcase--;
-    }
-    }
+    }		
+	}
 }
