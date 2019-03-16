@@ -7,35 +7,36 @@ import java.util.Scanner;
 // s whose codes are divisible by both AA and BB).
 
 class appyNContenst{
-    public static void main(String []args){
-       
-       
-        Scanner sc = new Scanner(System.in);
-        int count,noOfQuestion,i,greaterNumber,number ,number2;
-        System.out.println("Enter nunmber of testcases ");
-        int testcases=sc.nextInt();
-        
-        while(testcases>0){
-            System.out.println("enter greaterNumber number 1 and 2 noOfQuestion" );
-            greaterNumber = sc.nextInt();
-            number = sc.nextInt();
-            number2 = sc.nextInt(); 
-            noOfQuestion = sc.nextInt();
-            count=0;
-            for(i=0;number*i<=greaterNumber;i++){
-                if((number*i)%number2!=0){
-                    count--;
-                }
-                    count++;
-            }
 
-            for(i=0;number2*i<=greaterNumber;i++){
-                if((number2*i)%number==0){
-                    count--;
-                }
-                count++;                
-            }
-            System.out.println("value of "+noOfQuestion+noOfQuestion+"value of count is "+count);
+    static long gcd(long a,long b){
+        if(b==0)
+            return a;
+        return gcd(b,a%b);
+    }
+
+    public static void main(String []args){
+
+        Scanner sc = new Scanner(System.in);
+        long count,noOfQuestion,greaterNumber,number ,number2;
+        int testcases=sc.nextInt();
+        long storeGcd,greaterCount,numberCount,number2Count;
+        //long because of the constraint so w euse nextLong() inside of nextInt()
+        while(testcases>0){
+
+            greaterNumber = sc.nextInt();
+            number = sc.nextLong();
+            number2 = sc.nextLong(); 
+            noOfQuestion = sc.nextLong();
+            
+            //it will give L.C.M
+            //and multiply by two  as we have two number and it wil occur in both each time  
+            storeGcd = (number2*number)/gcd(number,number2);
+
+            greaterCount = 2*(greaterNumber/storeGcd);
+            numberCount = greaterNumber/number;
+            number2Count = greaterNumber/number2;
+            count=(numberCount+number2Count)-greaterCount;
+            
             if(count>=noOfQuestion)
                 System.out.println("Win");
             else
