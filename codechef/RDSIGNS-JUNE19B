@@ -1,0 +1,42 @@
+import java.math.BigInteger;
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s = new Scanner(System.in);
+		int a = s.nextInt();
+		for (int i = 0; i < a; i++) {
+			String str = s.next();
+//			BigInteger b = new BigInteger(str);
+//			BigInteger n = new BigInteger(str);
+//			BigInteger b1 = new BigInteger("0");
+//			BigInteger b2 = new BigInteger("10");
+//			BigInteger sum = new BigInteger("0");
+//			while (n.compareTo(b1) != 0) {
+//				BigInteger c = n.mod(b2);
+//				n = n.divide(b2);
+//				sum = sum.add(c);
+//			}
+//			BigInteger e = new BigInteger("0");
+//			BigInteger d = new BigInteger("0");
+//			if (sum.mod(b2).compareTo(b1) != 0) {
+//				e = sum.add(b2).subtract(sum.mod(b2));
+//				d = e.subtract(sum);
+//			}
+//			BigInteger f = b.multiply(b2).add(d);
+//			System.out.println(f);
+		
+BigInteger a11=new BigInteger("2");
+BigInteger a12=new BigInteger(str);
+BigInteger a113=new BigInteger("5");
+BigInteger a13=new BigInteger("1000000007");
+BigInteger a14=(a11.modPow(a12, a13));
+a14=a14.multiply(a113);
+if(a14.compareTo(a13)==1)
+	a14=a14.mod(a13);
+System.out.println(a14);
+	//	}
+		}
+	}
+}
+
