@@ -1,0 +1,92 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    private static String arrayString(int[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for ( int i = 0; i < arr.length; ++i ) {
+            sb.append(arr[i]).append(" ");
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tokenizer;
+        int t = Integer.parseInt(reader.readLine());
+
+        while ( t-- > 0 ) {
+            tokenizer = new StringTokenizer(reader.readLine());
+            int n = Integer.parseInt(tokenizer.nextToken()); // total customers
+            int m = Integer.parseInt(tokenizer.nextToken()); // total drinks
+
+            int[] c = new int[m + 1]; // Count of drinks
+            int[][] d = new int[n][3]; // Data of customers
+
+            boolean[] r = new boolean[n]; // Satisfaction of customer
+            long profit = 0l; // Total profit
+            int[] order = new int[n]; // Order of drinks
+
+            tokenizer = new StringTokenizer(reader.readLine());
+            for (int i = 1; i <= m; ++i) {
+                c[i] = Integer.parseInt(tokenizer.nextToken());
+            }
+
+            for (int i = 0; i < n; ++i) {
+                tokenizer = new StringTokenizer(reader.readLine());
+                d[i][0] = Integer.parseInt(tokenizer.nextToken());
+                d[i][1] = Integer.parseInt(tokenizer.nextToken());
+                d[i][2] = Integer.parseInt(tokenizer.nextToken());
+            }
+
+            // first, satisfy all the customers
+            for ( int i = 0; i < n; ++i ) {
+                if ( c[d[i][0]] > 0 ) {
+                    profit += d[i][1];
+                    order[i] = d[i][0];
+                    r[i] = true;      //this is intialized to differentiate the satisifed cusomer and customer that does not recived their order  
+                    c[d[i][0]]--;
+                }
+            }
+
+            // the first non-empty count of drink
+            int e = -1; //this is done to let know (ki pata lag paye konsi drink bachi hai) which drinks are remaining 
+            for ( int i = 1; i <= m; ++i ) {
+                if ( c[i] > 0 ) {
+                    e = i;
+                    break;
+                }
+            }
+
+	//then through it is opreated fom tha drink			
+            if ( e == -1 ) {
+                System.out.println(profit);
+                System.out.println(arrayString(order));   //arrayString is a method to convert array to string defined above 
+            } else {
+                // next, satisfy the remaning customers
+                for ( int i = 0; i < n; ++i ) {
+                    if ( !r[i] ) {//check if the given customer got the drink or not
+                        if ( c[e] == 0 ) {//if the drink is zero then check from the next one
+                            for ( int j = e + 1; j <= m; ++j ) {
+                                if ( c[j] > 0 ) {
+                                    e = j;
+                                    break;
+                                }
+                            }
+                        }
+                        c[e]--;
+                        profit += d[i][2];
+                        order[i] = e;
+                    }
+                }
+                System.out.println(profit);
+                System.out.println(arrayString(order));
+            }
+        }
+    }
+
+}
+
