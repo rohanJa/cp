@@ -1,0 +1,102 @@
+/* cerberus97 - Hanit Banga */
+
+#include <iostream>
+#include <iomanip>
+#include <cassert>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <map>
+#include <set>
+#include <queue>
+#include <stack>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+#define pb push_back
+#define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL)
+
+typedef long long ll;
+typedef long double ld;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+
+const int N = 1e5 + 10;
+const ll S = 1000000000000, M = S / 100;
+
+ll grundy[N];
+
+int main() {
+	fast_cin();
+	for (int i = 1; i <= 100; ++i) {
+		grundy[i] = 0;
+		set<int> s;
+		for (int j = 0; j < i; ++j) {
+			for (int k = 0; k < i; ++k) {
+				if (j + k == i - 1 or j + k == i - 2) {
+					s.insert(grundy[j] ^ grundy[k]);
+				}
+			}
+		}
+		while (s.count(grundy[i])) {
+			++grundy[i];
+		}
+	}
+	int t, w;
+	cin >> t >> w;
+	while (t--) {
+		set<ll> moves = {S + 1};
+		while (true) {
+			ll p; cin >> p;
+			if (p == -2 or p == -3) {
+				break;
+			} else if (p == -1) {
+				exit(0);
+			} else {
+				moves.insert(p);
+				ll q = 0, cur = 1, cur_grundy = 0;
+				for (auto &i : moves) {
+					if (cur < i) {
+						ll sz = i - cur;
+						cur_grundy ^= grundy[sz / M];
+					}
+					cur = i + M;
+				}
+				cur = 1;
+				for (auto &i : moves) {
+					if (cur < i) {
+						ll sz = i - cur;
+						ll lo = cur, hi = cur + sz - M;
+						if (sz >= M and !q) {
+							q = lo;
+						}
+						for (ll cand = lo; cand <= hi; cand += M) {
+							ll check = cur_grundy;
+							check ^= grundy[sz / M];
+							check ^= grundy[(cand - lo) / M];
+							check ^= grundy[(hi - cand) / M];
+							if (!check) {
+								q = cand;
+							}
+						}
+						for (ll cand = lo + M - 1; cand <= hi; cand += M) {
+							ll check = cur_grundy;
+							check ^= grundy[sz / M];
+							check ^= grundy[(cand - lo) / M];
+							check ^= grundy[(hi - cand) / M];
+							if (!check) {
+								q = cand;
+							}
+						}
+					}
+					cur = i + M;
+				}
+				cout << q << endl;
+				moves.insert(q);
+			}
+		}
+	}
+}

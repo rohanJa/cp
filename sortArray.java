@@ -1,14 +1,13 @@
-// June EATTWice cookoff
+/**
+   Author is Rohan Jain 
+   Created at 29/06/2019, 22:01:46
+**/
 
 import java.io.BufferedReader; 
 import java.io.IOException; 
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-// import java.util.Scanner; 
 import java.util.StringTokenizer; 
-class tasty{
+class sortArray{
     static class FastReader 
     { 
         BufferedReader br; 
@@ -65,36 +64,27 @@ class tasty{
             return str; 
         } 
     }
-
     public static void  main(String[] args) {
         FastReader s =new FastReader();
+        int size = s.nextInt();
+        int []arr = new int[size];
 
-        HashMap<Integer,Integer> hm =new HashMap<Integer,Integer>();
-        ArrayList<Integer> hmDel =new ArrayList<Integer>();
-        // Collections .max(arrayList)
-        int n=s.nextInt(),k=s.nextInt();
-        int maxValue1=0,maxValue2=0,index=0,max =Integer.MIN_VALUE;
-        int a,b;
-        for(int i=0;i<n;i++){
-            a=s.nextInt();
-            hm.put(i+1,a);
-            b=s.nextInt();
-            hmDel.add(b);
-            if(hmDel.get(i)>max){
-                max = hmDel.get(i);
-                index=i;
-                maxValue1 = hm.get(i+1);
-            }
-        }
-        int secondMax = Integer.MIN_VALUE;
-        hmDel.remove(index);
-        for(int i=0;i<n;i++){
-            if(hmDel.get(i)>max && (hm.get(index+1)!=hm.get(i+1))){
-                secondMax = hmDel.get(i);
-                index=i;
-                maxValue2 = hm.get(i+1);
-            }
-        }    
-        System.out.println((maxValue1+maxValue2));
+
+
+        for(int i=0;i<size;i++) 
+            arr[i] = s.nextInt();
+         
+            
+        // int temp;
+        // for(int i=0;i<size;i++){
+        //     if(arr[i]>arr[i+1]&&(Math.abs(arr[i]-arr[i+1])==2)){
+        //         temp = arr[i];
+        //         arr[i]=arr[i+1];
+        //         arr[i+1] = temp;
+        //     }
+        // }    
+        System.out.println(Math.abs((3-2)/2));        
+
+
     }
 }

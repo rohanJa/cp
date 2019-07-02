@@ -1,0 +1,123 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	/** Class for buffered reading int and double values */
+static class Reader {
+    static BufferedReader reader;
+    static StringTokenizer tokenizer;
+
+    /** call this method to initialize reader for InputStream */
+    static void init(InputStream input) {
+        reader = new BufferedReader(
+                     new InputStreamReader(input) );
+        tokenizer = new StringTokenizer("");
+    }
+
+    /** get next word */
+    static String next() throws IOException {
+        while ( ! tokenizer.hasMoreTokens() ) {
+            //TODO add check for eof if necessary
+            tokenizer = new StringTokenizer(
+                   reader.readLine() );
+        }
+        return tokenizer.nextToken();
+    }
+
+    static int nextInt() throws IOException {
+        return Integer.parseInt( next() );
+    }
+	
+    static double nextDouble() throws IOException {
+        return Double.parseDouble( next() );
+    }
+}
+	public static int calc(int val)
+	{
+		return (val*(val-1))/2;
+	}
+	public static void main(String[] args)throws IOException {
+		// TODO Auto-generated method stub
+		Reader.init(System.in);
+		int t = Reader.nextInt(),r,c;
+		char grid[][];
+		int count[][];
+		String row;
+		int step = 1;
+		int answer= 0;
+		for(int x=0;x<t;x++)
+		{
+			step=1;
+		 	r=Reader.nextInt();
+		 	c=Reader.nextInt();
+		 	grid = new char[r][c];
+		 	count = new int[r][c];
+		 	answer=0;
+		 	for(int i=0;i<r;i++)
+		 	{
+		 		row = Reader.next();
+		 		for(int j=0;j<c;j++)
+		 		{
+		 			count[i][j] = 0;
+		 			grid[i][j] = row.charAt(j);
+		 		}
+		 	}
+		 	while(step<(Math.max(r,c)))
+		 	{
+		 		for(int i=0;i<r;i++)
+		 		{
+		 			for(int j=0;j<c;j++)
+		 			{
+		 				if(grid[i][j]=='#')
+		 					continue;
+		 				if(grid[i][j]=='-')
+		 					continue;
+		 				if(grid[i][j]=='R' && j+step<c){
+		 					if(grid[i][j+step]=='#')
+		 					{
+		 						grid[i][j]='-';
+		 					}
+		 					else
+		 						count[i][j+step]++;
+		 				}
+		 				if(grid[i][j]=='L' && j-step>=0){
+		 					if(grid[i][j-step]=='#')
+		 					{
+		 						grid[i][j]='-';
+		 					}
+		 					else
+		 						count[i][j-step]++;
+		 				}
+		 				if(grid[i][j]=='U' && i-step>=0){
+		 					if(grid[i-step][j]=='#')
+		 					{
+		 						grid[i][j]='-';
+		 					}
+		 					else
+		 						count[i-step][j]++;
+		 				}
+		 				if(grid[i][j]=='D' && i+step<r){
+		 					if(grid[i+step][j]=='#')
+		 					{
+		 						grid[i][j]='-';
+		 					}
+		 					else
+		 						count[i+step][j]++;
+		 				}
+		 			}
+		 		}
+		 		for(int i=0;i<r;i++)
+		 		{
+		 			for(int j=0;j<c;j++)
+		 			{
+		 				answer+=(calc(count[i][j]));
+						count[i][j]=0;
+		 			}
+		 		}
+		 		step++;
+		 	}
+		 	System.out.println(answer);
+		}
+	}
+
+}

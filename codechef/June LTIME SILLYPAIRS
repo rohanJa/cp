@@ -1,0 +1,87 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+class PAIR
+{
+    public static void main(String args[])throws IOException
+    {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0)
+        {
+            int n=sc.nextInt();
+            long a[]=new long[n];
+            long b[]=new long[n];
+            long a1[]=new long[n];
+            long b1[]=new long[n];
+            long a2[]=new long[n];
+            long b2[]=new long[n];
+            long max=0,c,d;int j=0,k=0,l=0,m=0; 
+            for(int i=0;i<n;i++)
+            {
+                a[i]=sc.nextLong();                
+            }             
+            for(int i=0;i<n;i++)
+            {
+                b[i]=sc.nextLong();               
+            }
+            Arrays.sort(a);
+            Arrays.sort(b);
+            for(int i=0;i<n;i++)
+            {
+                if(a[i]%2==0)
+                {
+                    a1[j]=a[i];
+                    j++;
+                }
+                else
+                {
+                    a2[k]=a[i];
+                    k++;
+                }
+                if(b[i]%2==0)
+                {
+                    b1[l]=b[i];
+                    l++;
+                }
+                else
+                {
+                    b2[m]=b[i];
+                    m++;
+                }
+            }
+            j--;
+            k--;
+            l--;
+            m--;
+            for(int i=0;i<n;i++)
+            {
+                if(j>=0 && l>=0)
+                {
+                    max+=(a1[j]+b1[l])/2;
+                    j--;
+                    l--;
+                }
+                else if(j>=0 && l<0)
+                {
+                    max+=(a1[j]+b2[m])/2;
+                    j--;
+                    m--;
+                }
+                else if(j<0 && l>=0)
+                {
+                    max+=(a2[k]+b1[l])/2;
+                    k--;
+                    l--;
+                }
+                else if(j<0 && l<0)
+                {
+                    max+=(a2[k]+b2[m])/2;
+                    k--;
+                    m--;
+                }
+            }
+            System.out.println(max);
+        }
+    }
+}

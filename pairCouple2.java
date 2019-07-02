@@ -1,14 +1,13 @@
-// June EATTWice cookoff
+/**
+   Author is Rohan Jain 
+   Created at 30/06/2019, 16:46:51
+**/
 
 import java.io.BufferedReader; 
 import java.io.IOException; 
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-// import java.util.Scanner; 
 import java.util.StringTokenizer; 
-class tasty{
+class pairCouple2{
     static class FastReader 
     { 
         BufferedReader br; 
@@ -65,36 +64,36 @@ class tasty{
             return str; 
         } 
     }
-
     public static void  main(String[] args) {
         FastReader s =new FastReader();
-
-        HashMap<Integer,Integer> hm =new HashMap<Integer,Integer>();
-        ArrayList<Integer> hmDel =new ArrayList<Integer>();
-        // Collections .max(arrayList)
-        int n=s.nextInt(),k=s.nextInt();
-        int maxValue1=0,maxValue2=0,index=0,max =Integer.MIN_VALUE;
-        int a,b;
-        for(int i=0;i<n;i++){
-            a=s.nextInt();
-            hm.put(i+1,a);
-            b=s.nextInt();
-            hmDel.add(b);
-            if(hmDel.get(i)>max){
-                max = hmDel.get(i);
-                index=i;
-                maxValue1 = hm.get(i+1);
+        int testcase = s.nextInt();
+        StringBuilder sb = new StringBuilder("");
+        while(testcase-->0){
+            int size = s.nextInt();
+            int []arrOne = new int[size];
+            int []arrTwo = new int[size];
+            long sum=0;
+            int evenOne=0,evenTwo=0;
+            for(int i=0;i<size;i++){
+                arrOne[i] = s.nextInt();
+                sum += arrOne[i];
+                if(arrOne[i]%2 == 0)
+                    evenOne++;
             }
+            for(int i=0;i<size;i++){
+                arrTwo[i] = s.nextInt();
+                sum += arrTwo[i];
+                if(arrTwo[i]%2 == 0)
+                    evenTwo++;
+            }
+            sum = sum/2 - Math.abs((evenOne-evenTwo)/2);
+            sb.append(sum+"\n");
         }
-        int secondMax = Integer.MIN_VALUE;
-        hmDel.remove(index);
-        for(int i=0;i<n;i++){
-            if(hmDel.get(i)>max && (hm.get(index+1)!=hm.get(i+1))){
-                secondMax = hmDel.get(i);
-                index=i;
-                maxValue2 = hm.get(i+1);
-            }
-        }    
-        System.out.println((maxValue1+maxValue2));
+        System.out.println(sb);
+    
+    
     }
+
+
+
 }

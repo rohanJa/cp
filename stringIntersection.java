@@ -1,14 +1,17 @@
-// June EATTWice cookoff
-
+/**
+   Author is Rohan Jain 
+   Created at 28/06/2019, 16:35:13
+**/
 import java.io.BufferedReader; 
 import java.io.IOException; 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 // import java.util.Scanner; 
 import java.util.StringTokenizer; 
-class tasty{
+class stringInterSection{
     static class FastReader 
     { 
         BufferedReader br; 
@@ -65,36 +68,23 @@ class tasty{
             return str; 
         } 
     }
-
     public static void  main(String[] args) {
         FastReader s =new FastReader();
+        String a = s.nextLine();
+        String b = s.nextLine();
+        char []arr = b.toCharArray();
 
-        HashMap<Integer,Integer> hm =new HashMap<Integer,Integer>();
-        ArrayList<Integer> hmDel =new ArrayList<Integer>();
-        // Collections .max(arrayList)
-        int n=s.nextInt(),k=s.nextInt();
-        int maxValue1=0,maxValue2=0,index=0,max =Integer.MIN_VALUE;
-        int a,b;
-        for(int i=0;i<n;i++){
-            a=s.nextInt();
-            hm.put(i+1,a);
-            b=s.nextInt();
-            hmDel.add(b);
-            if(hmDel.get(i)>max){
-                max = hmDel.get(i);
-                index=i;
-                maxValue1 = hm.get(i+1);
+        int index=0,count=0;
+        for(char r :a.toCharArray()){
+            if(r==arr[index])  { 
+                count++;
+                index++;
+            }
+            else{
+                index=0;
+                count=0;
             }
         }
-        int secondMax = Integer.MIN_VALUE;
-        hmDel.remove(index);
-        for(int i=0;i<n;i++){
-            if(hmDel.get(i)>max && (hm.get(index+1)!=hm.get(i+1))){
-                secondMax = hmDel.get(i);
-                index=i;
-                maxValue2 = hm.get(i+1);
-            }
-        }    
-        System.out.println((maxValue1+maxValue2));
+            System.out.println(a.length()-count) ;
     }
-}
+}    

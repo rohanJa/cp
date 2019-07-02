@@ -1,0 +1,33 @@
+To write name of the author run the author.py script with command.
+
+Go to the file path-
+
+It will create the file
+
+python3 replaceText.py <filename>
+
+                              --------------*******************--------------------------
+Note:-
+
+python3 is used as the fileInput is providing newline for replacement  "end = ''" as it prevent newline in print() function. 
+
+as python2 does not support " end='' " .
+                              --------------*******************--------------------------
+This will write the name of the auhtor and time the file is created at newline in print() function.
+
+                              --------------*******************------------------------------
+                            
+count number of file in a directory
+
+find . -type f -name "*.java"| wc -l
+
+                              --------------*******************------------------------------
+
+find DIR_NAME -type f | wc -l
+
+Explanation:
+
+    =>  -type f to include only files.
+    =>  | (and not ¦) redirects find command's standard output to wc command's standard input.
+    =>  wc (short for word count) counts newlines, words and bytes on its input (docs).
+    =>  -l to count just newlines.
