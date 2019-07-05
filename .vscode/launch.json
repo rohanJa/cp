@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - segmentTree",
+            "request": "launch",
+            "mainClass": "segmentTree",
+            "projectName": "java programs_8380d17a"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - first",
             "request": "launch",
             "mainClass": "first"
